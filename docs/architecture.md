@@ -35,7 +35,14 @@ The observed side owns the contract. It lives in Revestimientos at
 `docs/observabilidad/log-schema.v1.json`, and a copy is vendored here under
 `contracts/revestimientos/`, recording the commit it was taken from. Revestimientos validates
 every emitted line against the schema in its own test suite. This project validates its fixtures
-against the vendored copy. If either side drifts, a test fails.
+against the vendored copy. If either side drifts incompatibly, a test fails.
+
+**Compatibility rule (set by the contract)**: new events and new optional attributes are
+compatible. The investigator keeps unknown events as generic evidence and ignores unknown
+attributes. Removing, renaming or retyping anything requires a new `schema_version`, which the
+investigator refuses until it supports it. The contract also warns that a missing event does not
+prove the fact did not happen (the producer may drop lines rather than break a request). Reports
+must not treat absence as proof.
 
 ## Inside the investigator
 
@@ -73,7 +80,7 @@ class LogSource(Protocol):
 ```
 
 v1 has one adapter, `FileLogSource`. It reads `app-*.jsonl` from one directory, streams
-line by line, validates every line against the contract, and refuses to run if it finds a
+line by line, validates every line against the contract (tolerating additive changes), and refuses to run if it finds a
 `schema_version` it does not support. Later sources (a Render log API, Grafana Loki) are new adapters
 behind the same port. The graph does not change.
 
@@ -151,7 +158,7 @@ resulting log lines committed as fixtures and the known answer written down befo
 | Invalid webhook signature | "Did MercadoPago notify payment X?" | `webhook.signature_invalid`, cause identified |
 | Payment preference failure | "Customer says the pay button did nothing — order N" | `checkout.mp_preference_failed` |
 | Payment rejected | "Why is order N still pending?" | `webhook.payment_not_approved` with status |
-| Abandoned at payment | "Order N never got paid" | `checkout.payment_started` with no webhook afterwards |
+| Stuck after payment redirect | "Order N never got paid" | `checkout.payment_started` with nothing afterwards, reported as **"abandoned at MercadoPago or webhook lost: the logs cannot tell which"** (a declared limit of contract v1) |
 | Checkout rejected by stock | "I couldn't buy" (time window) | `checkout.rejected`, reason `dominio` |
 | Negative stock | "Stock went negative for product P" | recognised as **expected** behaviour, not a bug |
 | Unknown order | "What happened to order 99999?" | "no evidence found" |
