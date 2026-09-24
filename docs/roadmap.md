@@ -13,5 +13,5 @@ Nothing past v1 is committed. Each version starts with its own decision record.
 ## v1 — before writing code
 
 1. Revestimientos merges log contract v1. Vendor `log-schema.v1.json` here with its commit.
-2. Decide the default model provider (ADR 0003).
+2. ~~Decide the default model provider~~: Gemini free tier (ADR 0003). Create a `GOOGLE_API_KEY`.
 3. Reproduce the evaluation scenarios in Revestimientos and commit their log fixtures.

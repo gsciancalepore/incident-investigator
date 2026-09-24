@@ -16,8 +16,8 @@ independent. They share a versioned log contract (JSON Schema + event catalog), 
 - **Explicit graph, not a free-form agent**: LangGraph pipeline where the model decides *what to
   look for* and *what it means*, and plain code does the retrieval, correlation and citation
   checking.
-- **Swappable model**: local (Ollama) or hosted, behind LangChain's chat model interface, always
-  with structured output.
+- **Swappable model**: Gemini free tier by default, Ollama or Anthropic as alternatives, behind
+  LangChain's chat model interface, always with structured output.
 - **Measured**: an evaluation suite of incidents reproduced on purpose, with known answers, scored
   per model: root-cause accuracy, citation validity, invented identifiers.
 

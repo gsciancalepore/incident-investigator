@@ -27,7 +27,7 @@ contract**.
                                                                                │ chat model interface
                                                                   ┌────────────▼──────────────┐
                                                                   │ Language model (swappable)│
-                                                                  │ local or hosted           │
+                                                                  │ default: Gemini free tier │
                                                                   └───────────────────────────┘
 ```
 
@@ -136,7 +136,7 @@ into the analysis prompt.
 
 | Boundary | Rule |
 |---|---|
-| Personal data | Removed by the observed system **before** the line is written. The investigator never sees it, so what the model sees is already clean |
+| Personal data | Removed by the observed system **before** the line is written. The investigator never sees it, so what the model sees is already clean. This is also what makes the Gemini free tier acceptable, since it may use prompts to improve Google's products (ADR 0003) |
 | Log content → prompt | Log values are **untrusted data**. Some come from outside the store (headers such as MercadoPago's `x-request-id`, payment references). They go into the prompt only inside delimited, typed evidence blocks, never as instructions. The contract caps the length of externally sourced strings |
 | Model output | Parsed into Pydantic models. Anything that fails validation is retried once, then reported as an analysis failure, never passed through as free text |
 | Side effects | None. The investigator reads one directory and writes one report |
@@ -173,7 +173,7 @@ The same suite runs against every configured model, and the comparison table goe
 | Language | Python 3.12 |
 | Packaging | `uv` |
 | Orchestration | LangGraph |
-| Model interface | LangChain chat models (`langchain-ollama`, `langchain-anthropic` as an optional extra) |
+| Model interface | LangChain chat models: `langchain-google-genai` (**default, Gemini free tier**), `langchain-ollama`, `langchain-anthropic` (optional extra) |
 | Data models | Pydantic v2 |
 | Schema validation | `jsonschema` |
 | CLI | Typer |
