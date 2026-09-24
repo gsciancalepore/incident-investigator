@@ -7,7 +7,9 @@ that supports it, and it says "no evidence found" instead of guessing.
 The first observed system is **Revestimientos**, a Laravel 12 e-commerce store. The two systems are
 independent. They share a versioned log contract (JSON Schema + event catalog), and nothing else.
 
-> **Status**: architecture defined (2026-09-24), implementation not started.
+> **Status**: architecture defined and log contract v1 vendored (2026-09-24); implementation not
+> started. Next: create the GitHub repository and `GOOGLE_API_KEY`, then reproduce the evaluation
+> scenarios in Revestimientos (see `docs/roadmap.md`).
 
 ## Design at a glance
 
