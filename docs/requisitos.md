@@ -117,8 +117,8 @@ solo el prompt.
 
 Están especificados en Revestimientos, en la spec
 `docs/specs/observabilidad-02-ampliacion-contrato-v1.md`: **aprobada** el 2026-10-12 y mergeada en el
-PR #42. Ese mismo día se **implementó** en la rama `feat/observabilidad-02-ampliacion-contrato`, que
-todavía no tiene push ni PR. Todos los cambios son compatibles con el contrato v1.
+PR #42. Ese mismo día se **implementó** en la rama `feat/observabilidad-02-ampliacion-contrato`, con
+PR #44 abierto. Todos los cambios son compatibles con el contrato v1.
 
 | Regla | Cambio | Habilita |
 |---|---|---|

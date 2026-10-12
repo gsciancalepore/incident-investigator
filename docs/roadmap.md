@@ -2,8 +2,8 @@
 
 Última actualización: 2026-10-12, noche. Las fechas de este documento son en UTC: en Argentina fue
 la noche del 2026-10-11. El PR #1 mergeó los requisitos, todavía como borrador, y la documentación en
-español. Del lado de Revestimientos, la spec `observabilidad-02` está aprobada (#42) e implementada en
-una rama que todavía no tiene push ni PR.
+español. Del lado de Revestimientos, la spec `observabilidad-02` está aprobada (#42) e implementada, y
+su PR #44 espera el merge del dueño.
 
 | Versión | Suma | Depende de |
 |---|---|---|
@@ -28,8 +28,8 @@ Nada después de la v1 está comprometido. Cada versión empieza con su propia A
    - ~~aprobación~~: el dueño la aprobó el 2026-10-12, tras dos rondas de `revisor-spec`;
    - ~~merge de la spec~~: PR #42 de Revestimientos;
    - **implementación**: hecha el 2026-10-12 en la rama `feat/observabilidad-02-ampliacion-contrato`
-     de Revestimientos (`github.com/gsciancalepore/revestimientos`). Faltan `revisor-entrega`, el
-     push y el PR a `main`. El estado exacto está en el punto de retome de
+     de Revestimientos (`github.com/gsciancalepore/revestimientos`). `revisor-entrega` la dio
+     apta y el **PR #44** espera el merge del dueño. El estado exacto está en el punto de retome de
      `~/ceramica/docs/roadmap.md`.
    - **Después del merge**: volver a copiar el schema en `contracts/revestimientos/` y actualizar el
      commit de origen en su README.
