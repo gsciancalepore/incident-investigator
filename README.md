@@ -39,4 +39,5 @@ nada más.
   - [ADR-003 — Modelo intercambiable](docs/adr/ADR-003-modelo-intercambiable.md)
   - [ADR-004 — Sin RAG en v1](docs/adr/ADR-004-sin-rag-en-v1.md)
 - [Roadmap](docs/roadmap.md).
+- [Reglas del proyecto](AGENTS.md): idioma, commits, proceso y frontera de datos.
 - [Contrato de Revestimientos vendoreado](contracts/revestimientos/README.md).
