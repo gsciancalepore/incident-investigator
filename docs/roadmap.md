@@ -1,8 +1,9 @@
 # Roadmap
 
-Última actualización: 2026-10-12, noche. Requisitos en borrador y documentación en español (PR #1).
-Del lado de Revestimientos, la spec `observabilidad-02` está aprobada (#42) e implementada, y falta
-mergear su PR.
+Última actualización: 2026-10-12, noche. Las fechas de este documento son en UTC: en Argentina fue
+la noche del 2026-10-11. El PR #1 mergeó los requisitos, todavía como borrador, y la documentación en
+español. Del lado de Revestimientos, la spec `observabilidad-02` está aprobada (#42) e implementada en
+una rama que todavía no tiene push ni PR.
 
 | Versión | Suma | Depende de |
 |---|---|---|
@@ -20,13 +21,15 @@ Nada después de la v1 está comprometido. Cada versión empieza con su propia A
    `contracts/revestimientos/`.
 2. ~~Decidir el proveedor de modelo por defecto~~: plan gratuito de Gemini (ADR-003). Crear una
    `GOOGLE_API_KEY`.
-3. **Requisitos** ([`requisitos.md`](requisitos.md)): borrador escrito el 2026-10-12, en el PR #1. Falta
-   la revisión del dueño.
+3. **Requisitos** ([`requisitos.md`](requisitos.md)): escritos el 2026-10-12 y mergeados **como
+   borrador** en el PR #1. Falta que el dueño los apruebe de forma explícita; mergear el PR no
+   equivale a aprobarlos.
 4. **Cambios de logs en Revestimientos**, spec `observabilidad-02-ampliacion-contrato-v1`:
    - ~~aprobación~~: el dueño la aprobó el 2026-10-12, tras dos rondas de `revisor-spec`;
    - ~~merge de la spec~~: PR #42 de Revestimientos;
    - **implementación**: hecha el 2026-10-12 en la rama `feat/observabilidad-02-ampliacion-contrato`
-     de Revestimientos. Falta el merge de su PR. El estado exacto está en el punto de retome de
+     de Revestimientos (`github.com/gsciancalepore/revestimientos`). Faltan `revisor-entrega`, el
+     push y el PR a `main`. El estado exacto está en el punto de retome de
      `~/ceramica/docs/roadmap.md`.
    - **Después del merge**: volver a copiar el schema en `contracts/revestimientos/` y actualizar el
      commit de origen en su README.
@@ -41,23 +44,23 @@ Nada después de la v1 está comprometido. Cada versión empieza con su propia A
 **Leer esto primero.**
 
 **Repositorio**: `github.com/gsciancalepore/incident-investigator`, público.
-- `main` tiene solo los 4 commits originales, en inglés.
-- **PR #1** (rama `docs/requisitos-y-espanol`) trae todo lo del 2026-10-12 y espera la revisión del
-  dueño:
-  - requisitos;
+- `main` tiene el **PR #1**, mergeado por el dueño el 2026-10-12:
+  - requisitos, todavía como borrador;
   - documentación traducida al español, con nombres de archivo según la convención de
     Revestimientos;
-  - `AGENTS.md` y `CLAUDE.md`;
-  - este roadmap.
+  - `AGENTS.md` y `CLAUDE.md`.
+- Este punto de retome entró después, por el **PR #2** (rama `docs/retome-2026-10-12`). Si al
+  retomar ese PR no está mergeado, se lee desde la rama.
 - Todavía no hay código.
 
 **Revestimientos** (`~/ceramica`) implementó los cambios de logs que piden los requisitos (paso 4).
 Su punto de retome en `docs/roadmap.md` dice qué falta de ese lado.
 
 **Lo próximo acá, en orden**:
-1. Que el dueño revise y mergee el PR #1.
-2. Cuando se mergee la implementación en Revestimientos, volver a copiar el schema (paso 4).
-3. **Revisar el stack** (paso 5), con [`requisitos.md`](requisitos.md) y `arquitectura.md`
+1. `git fetch` y partir de `origin/main`. Si el PR #2 sigue abierto, el dueño lo mergea primero.
+2. Que el dueño apruebe los requisitos (paso 3), o pida cambios.
+3. Cuando se mergee la implementación en Revestimientos, volver a copiar el schema (paso 4).
+4. **Revisar el stack** (paso 5), con [`requisitos.md`](requisitos.md) y `arquitectura.md`
    §Pendiente como entrada. Agenda propuesta, una decisión por punto, cada una con su ADR o con el
    estado actualizado de la ADR que revisa:
    1. **Orquestación**: el flujo es un workflow fijo con dos loops acotados (ADR-002). Hay que
@@ -72,7 +75,7 @@ Su punto de retome en `docs/roadmap.md` dice qué falta de ese lado.
    6. **Calidad**: herramientas y comandos. Al decidirlas, completar §Entorno y comandos de
       `AGENTS.md` y el Definition of Done del código.
 
-**Reglas que no se negocian** (`AGENTS.md`):
+**Reglas que no se negocian** (`AGENTS.md`, §Idioma y proceso):
 - documentación y commits en español;
 - sin trailers de atribución a IA;
 - requisitos antes que código;

@@ -62,8 +62,9 @@ La cobertura se evalúa contra el contrato de logs v1 más los cambios de la sec
 
 ### Conocimiento del dominio que el agente necesita
 
-Estas reglas de Revestimientos explican comportamientos que, sin contexto, parecerían fallas. Hoy
-no todas están en las descripciones del contrato:
+Estas reglas de Revestimientos explican comportamientos que, sin contexto, parecerían fallas. En la
+copia vendoreada del contrato (la v1 original) no todas están en las descripciones. OBS-15 las agrega
+en Revestimientos, y llegan acá al volver a copiar el schema:
 
 - **Toda cancelación la hace un admin** (regla 165). El cliente no puede cancelar y no hay
   cancelaciones automáticas.
@@ -116,8 +117,8 @@ solo el prompt.
 
 Están especificados en Revestimientos, en la spec
 `docs/specs/observabilidad-02-ampliacion-contrato-v1.md`: **aprobada** el 2026-10-12 y mergeada en el
-PR #42. Ese mismo día se **implementó** en la rama `feat/observabilidad-02-ampliacion-contrato`, cuyo
-PR falta mergear. Todos los cambios son compatibles con el contrato v1.
+PR #42. Ese mismo día se **implementó** en la rama `feat/observabilidad-02-ampliacion-contrato`, que
+todavía no tiene push ni PR. Todos los cambios son compatibles con el contrato v1.
 
 | Regla | Cambio | Habilita |
 |---|---|---|

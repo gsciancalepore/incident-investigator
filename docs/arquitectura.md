@@ -62,7 +62,7 @@ proveedores de modelos.
 src/incident_investigator/
 ├── contract/     LogEntry, EventCatalog: modelos Pydantic generados desde el schema o validados contra él
 ├── ports/        LogSource (consultar logs), ChatModel (el puerto es BaseChatModel de LangChain)
-├── adapters/     FileLogSource (directorio jsonl), factory de modelos (ollama | anthropic | …)
+├── adapters/     FileLogSource (directorio jsonl), factory de modelos (google-genai por defecto | ollama | anthropic)
 ├── graph/        StateGraph de LangGraph: nodos y estado
 ├── report/       modelo Report → renderers de Markdown y JSON
 └── cli.py        `investigate --logs DIR "pregunta"`
@@ -221,10 +221,17 @@ Cada una es una versión posterior con su propia ADR (ver `roadmap.md`).
 Diferencias conocidas entre esta arquitectura y [`requisitos.md`](requisitos.md). Se resuelven al
 revisar el stack, no antes.
 
-1. **`LogQuery` no puede filtrar por producto ni por sesión.**
+1. **`LogQuery` no puede filtrar por producto, por sesión ni por `external_reference`.**
    - CU8 y CU9 necesitan `product_id`, que en el contrato aparece como `product_id` en
      `order.stock_negative` y en `lines[]`, y como `subject_id` en los eventos `product.*`.
    - CU6 necesita `session_ref` (spec observabilidad-02 de Revestimientos, OBS-13).
+   - CU1 necesita `external_reference`: un `checkout.returned` con `order_id: null` se ata al pedido
+     solo por ese valor, que viene sin firma (OBS-12).
+   - **Saltos de correlación nuevos en el nodo 2**:
+     - para CU6: `order.created` → su `request_id` → su `http.request.session_ref` → los otros
+       `http.request` con el mismo `session_ref` → sus `request_id` → los `checkout.rejected`;
+     - para CU1: `checkout.returned` sin `order_id` → `external_reference`, tratado como vínculo
+       débil.
 2. **Consumo de logs.**
    - Los requisitos fijan un montaje de solo lectura en un contenedor, de un directorio que contiene
      solo el contrato (`storage/logs/contrato/`, OBS-10).
@@ -234,7 +241,7 @@ revisar el stack, no antes.
    pago" se parte en dos: el cliente volvió (se distingue) o no volvió (sigue sin distinguirse).
 4. **Veredicto accionable** (regla R8): el informe suma quién tiene que actuar (cliente, tienda o
    desarrollador).
-5. **Escenarios de evaluación**: la tabla de arriba cubre 7 de los 11 casos de uso. Faltan CU4
+5. **Escenarios de evaluación**: los 7 escenarios de la tabla cubren 6 de los 11 casos de uso. Faltan CU4
    (monto distinto), CU5 (pagó sobre un pedido cancelado), CU7 (transferencia sin confirmar), CU8
    (precio) y CU10 (sitio lento).
 6. **ADR-003**: la sección *Decisión* lista Ollama y Anthropic como proveedores de v1, y Gemini
