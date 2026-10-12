@@ -1,34 +1,42 @@
 # incident-investigator
 
-An AI agent that investigates production incidents by reading an observed system's logs. It answers
-questions like *"what happened to order 123?"* with a report where every claim cites the log line
-that supports it, and it says "no evidence found" instead of guessing.
+Un agente de IA que investiga incidentes de producción leyendo los logs de un sistema observado.
+Responde preguntas como *"¿qué pasó con el pedido 123?"* con un informe donde cada afirmación cita
+la línea de log que la respalda. Si no encuentra nada, dice "no se encontró evidencia" en lugar de
+adivinar.
 
-The first observed system is **Revestimientos**, a Laravel 12 e-commerce store. The two systems are
-independent. They share a versioned log contract (JSON Schema + event catalog), and nothing else.
+El primer sistema observado es **Revestimientos**, una tienda online en Laravel 12. Los dos sistemas
+son independientes: comparten un contrato de logs versionado (JSON Schema + catálogo de eventos), y
+nada más.
 
-> **Status**: architecture defined and log contract v1 vendored (2026-09-24); implementation not
-> started. Next: create the GitHub repository and `GOOGLE_API_KEY`, then reproduce the evaluation
-> scenarios in Revestimientos (see `docs/roadmap.md`).
+> **Estado** (2026-10-12): arquitectura definida, contrato de logs v1 vendoreado y
+> [requisitos](docs/requisitos.md) en borrador. Implementación no empezada. El stack está **en
+> revisión** hasta cerrar los requisitos. Revestimientos tiene en borrador la spec
+> `observabilidad-02` con los cambios de logs que piden los requisitos. Lo próximo está en
+> [`docs/roadmap.md`](docs/roadmap.md).
 
-## Design at a glance
+## El diseño en pocas líneas
 
-- **External by design**: reads a directory of `.jsonl` files. No database, no network access to the
-  observed system. Personal data is removed before the logs are written.
-- **Explicit graph, not a free-form agent**: LangGraph pipeline where the model decides *what to
-  look for* and *what it means*, and plain code does the retrieval, correlation and citation
-  checking.
-- **Swappable model**: Gemini free tier by default, Ollama or Anthropic as alternatives, behind
-  LangChain's chat model interface, always with structured output.
-- **Measured**: an evaluation suite of incidents reproduced on purpose, with known answers, scored
-  per model: root-cause accuracy, citation validity, invented identifiers.
+- **Externo por diseño**:
+  - Lee un directorio de archivos `.jsonl`, montado en solo lectura.
+  - Sin base de datos y sin red hacia el sistema observado.
+  - Los datos personales se eliminan antes de escribir los logs.
+- **Grafo explícito, no un agente libre**: un pipeline de LangGraph donde el modelo decide *qué
+  buscar* y *qué significa*, y el código hace la búsqueda, la correlación y la verificación de
+  citas.
+- **Modelo intercambiable**: plan gratuito de Gemini por defecto, y Ollama o Anthropic como
+  alternativas, detrás de la interfaz de chat models de LangChain, siempre con salida estructurada.
+- **Medido**: una suite de evaluación con incidentes reproducidos a propósito y respuestas conocidas,
+  puntuada por modelo: precisión de causa raíz, validez de citas e identificadores inventados.
 
-## Documents
+## Documentos
 
-- [Architecture](docs/architecture.md)
-- Decision records:
-  - [0001 — External system and log contract](docs/adr/0001-external-system-log-contract.md)
-  - [0002 — LangGraph with deterministic evidence gathering](docs/adr/0002-langgraph-deterministic-retrieval.md)
-  - [0003 — Swappable model](docs/adr/0003-swappable-model.md)
-  - [0004 — No RAG in v1](docs/adr/0004-no-rag-in-v1.md)
-- [Roadmap](docs/roadmap.md)
+- [Requisitos](docs/requisitos.md): usuario, casos de uso, reglas del agente y criterios de éxito.
+- [Arquitectura](docs/arquitectura.md).
+- Decisiones (ADRs):
+  - [ADR-001 — Sistema externo y contrato de logs](docs/adr/ADR-001-sistema-externo-contrato-logs.md)
+  - [ADR-002 — LangGraph con recolección determinística de evidencia](docs/adr/ADR-002-langgraph-recoleccion-deterministica.md)
+  - [ADR-003 — Modelo intercambiable](docs/adr/ADR-003-modelo-intercambiable.md)
+  - [ADR-004 — Sin RAG en v1](docs/adr/ADR-004-sin-rag-en-v1.md)
+- [Roadmap](docs/roadmap.md).
+- [Contrato de Revestimientos vendoreado](contracts/revestimientos/README.md).
