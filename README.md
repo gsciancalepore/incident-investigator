@@ -11,8 +11,8 @@ nada más.
 
 > **Estado** (2026-10-12): arquitectura definida, contrato de logs v1 vendoreado y
 > [requisitos](docs/requisitos.md) en borrador. Implementación no empezada. El stack está **en
-> revisión** hasta cerrar los requisitos. Revestimientos tiene en borrador la spec
-> `observabilidad-02` con los cambios de logs que piden los requisitos. Lo próximo está en
+> revisión** hasta cerrar los requisitos. Revestimientos ya implementó los cambios de logs que piden
+> los requisitos (spec `observabilidad-02`), y falta mergear su PR. Lo próximo está en
 > [`docs/roadmap.md`](docs/roadmap.md).
 
 ## El diseño en pocas líneas

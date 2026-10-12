@@ -13,5 +13,7 @@ acá.** Se actualiza copiando una versión nueva desde el origen y anotando el c
 - Los eventos nuevos y los atributos opcionales nuevos son compatibles y se tienen que tolerar.
 - Quitar, renombrar o cambiar el tipo de algo exige `schema_version: "2"`.
 
-**Pendiente**: cuando se mergee la spec `observabilidad-02` en Revestimientos, se copia de nuevo el
-schema y se actualiza el commit de origen.
+**Pendiente**: Revestimientos implementó la spec `observabilidad-02` el 2026-10-12, en la rama
+`feat/observabilidad-02-ampliacion-contrato`. Cuando se mergee a `main`, se copia de nuevo el schema
+y se actualiza el commit de origen. La copia de acá es todavía la v1 original: no tiene
+`checkout.returned`, `session_ref` ni `precio_unitario_cents`.
