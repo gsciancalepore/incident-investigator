@@ -115,7 +115,7 @@ solo el prompt.
 ## 6. Cambios pedidos a los logs de Revestimientos
 
 Están especificados en Revestimientos, en la spec
-`docs/specs/observabilidad-02-ampliacion-contrato-v1.md` (**borrador** del 2026-10-12, rama
+`docs/specs/observabilidad-02-ampliacion-contrato-v1.md` (**aprobada** el 2026-10-12, rama
 `docs/observabilidad-02-spec`). Todos son compatibles con el contrato v1. Un agente sin contexto
 los puede implementar siguiendo su nota de handoff.
 
