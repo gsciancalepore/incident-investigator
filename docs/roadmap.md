@@ -22,8 +22,8 @@ Nada después de la v1 está comprometido. Cada versión empieza con su propia A
 3. **Requisitos** ([`requisitos.md`](requisitos.md)): borrador escrito el 2026-10-12. Falta la
    revisión del dueño.
 4. **Cambios de logs en Revestimientos**: spec `observabilidad-02-ampliacion-contrato-v1` en
-   borrador. Faltan `revisor-spec`, las decisiones D1–D3 del dueño, la aprobación y la
-   implementación. Al mergear, copiar de nuevo el schema en `contracts/revestimientos/`.
+   borrador v3. Pasó dos rondas de `revisor-spec` ("aprobable con correcciones menores",
+   ya aplicadas) y tiene las decisiones D1–D3 del dueño. Faltan la aprobación y la implementación. Al mergear, copiar de nuevo el schema en `contracts/revestimientos/`.
 5. **Revisar el stack** con los requisitos cerrados: ADR-002 y ADR-003 están en revisión, y
    `arquitectura.md` §Pendiente lista lo que hay que alinear.
 6. Reproducir los escenarios de evaluación en Revestimientos y commitear sus fixtures de logs.
@@ -37,4 +37,4 @@ Nada después de la v1 está comprometido. Cada versión empieza con su propia A
   `ADR-00N-slug.md`).
 - **En Revestimientos**: `docs/observabilidad-02-spec`, con el borrador de la spec.
 
-Lo próximo es el paso 4: pasar `revisor-spec` sobre la spec y que el dueño resuelva D1–D3.
+Lo próximo es el paso 4: que el dueño apruebe la spec (v3) y se implemente en Revestimientos.
