@@ -12,7 +12,8 @@ logs. Es un **sistema externo** (ADR-001):
 - nunca importa, llama ni modifica a Revestimientos.
 
 **Estado (2026-10-12)**: sin código.
-- Los [requisitos](docs/requisitos.md) están en borrador.
+- Los [requisitos](docs/requisitos.md) están mergeados como borrador. Falta la aprobación explícita
+  del dueño.
 - El stack está **en revisión** (ADR-002 y ADR-003).
 - Lo próximo está en el punto de retome de [`docs/roadmap.md`](docs/roadmap.md).
 
@@ -37,7 +38,11 @@ logs. Es un **sistema externo** (ADR-001):
 - **Las decisiones no se borran, se marcan.** Una ADR revisada, descartada o reemplazada se conserva
   con su estado actualizado (`en revisión`, `descartada`, `reemplazada por ADR-00N`) y el motivo.
 - **Ramas**: todo cambio va en una rama nueva (`docs/...`, `feat/...`, `fix/...`), nunca directo en
-  `main`. Cuando exista el remoto en GitHub, se integra por Pull Request.
+  `main`. Se integra por Pull Request en GitHub (`gsciancalepore/incident-investigator`), y el que
+  mergea es el dueño. Antes de crear una rama: `git fetch` y partir de `origin/main`.
+- **Nunca un push sin los gates en verde**, aunque el cambio sea solo de documentación. Hoy no hay
+  gates porque no hay código. Cuando existan, se listan en §Entorno y comandos y se corren todos
+  antes de cada push.
 
 ## Orden de lectura antes de trabajar
 
@@ -77,5 +82,11 @@ logs. Es un **sistema externo** (ADR-001):
 
 ## Entorno y comandos
 
-Todavía no hay código, así que tampoco hay comandos de build, tests ni calidad. Se definen al
-cerrar la revisión del stack, y entonces se agregan acá junto con el Definition of Done del código.
+- El host (WSL2) no tiene `gh`. Los PRs se abren con el MCP de GitHub, y el push por `git` (https)
+  funciona. El token del MCP no puede crear repositorios: eso lo hace el dueño.
+- **Revestimientos** está en `~/ceramica` y en GitHub es `gsciancalepore/revestimientos`. Corre en
+  Docker Compose. Si `docker` no se encuentra en WSL, el dueño activa la integración en Docker
+  Desktop (Settings → Resources → WSL Integration).
+- Todavía no hay código, así que tampoco hay comandos de build, tests ni calidad. Se definen al
+  cerrar la revisión del stack, y entonces se agregan acá junto con el Definition of Done del
+  código.
